@@ -8,13 +8,13 @@
 #define LY A1
 #define LX A0
 
-#define DUP 11
-#define DLEFT 10
-#define DDOWN 9
+#define DUP 13
+#define DLEFT 12
+#define DDOWN 11
 #define DRIGHT 8
 
-#define BUTTONPLUS 12
-#define BUTTONMINUS 13
+#define BUTTONPLUS 0
+#define BUTTONMINUS 0
 
 #define BUTTONHOME 7
 
@@ -27,6 +27,7 @@ RF24 radio(9,10);
 const uint64_t writingPipe = 0xF0F0F0F0E1LL;
 const byte address[6] = "00001";
 uint16_t values[16];
+
 
 //TODO get radio to work with structs
 struct packet {
@@ -78,14 +79,14 @@ void setup() {
 }
 
 void loop() {
-  readInputData();
+//  readInputData();
  
-//  readInputArray();
+  readInputArray();
 
 // TODO uncomment this line to send radio signal
-//  radio.write(&values, sizeof(values));
+  radio.write(&values, sizeof(values));
 
-  debugInput(data);
+//  debugInput(data);
 //  debugInputArray();
 }
 
@@ -99,6 +100,7 @@ void initRadio(){
   radio.setPALevel(RF24_PA_MIN);
   radio.stopListening();
 }
+
 
 void readInputData(){
   data.throttle = map(analogRead(RY), 0, 1023, 0, 255);
@@ -144,7 +146,7 @@ void debugInputArray(){
   Serial.print(" : ");
   Serial.print(values[2]);
   Serial.print(" : ");
-  Serial.println(values[3]);
+  Serial.print(values[3]);
   Serial.print(readButton(DUP));
   Serial.print(" : ");
   Serial.print(readButton(DLEFT));

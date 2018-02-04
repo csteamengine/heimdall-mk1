@@ -49,10 +49,10 @@ void NRF24_Read_RC() {
     lastRecvTime = now;
     
 //    TODO replace this with the packet struct
-    nrf24_rcData[THROTTLE] = map(values[3], 0, 255, 1000, 2000);
-    nrf24_rcData[YAW] =      map(values[2],      0, 1024, 1000, 2000);
-    nrf24_rcData[PITCH] =    map(values[1],    0, 255, 1000, 2000);
-    nrf24_rcData[ROLL] =     map(values[0],     0, 255, 1000, 2000);
+    nrf24_rcData[THROTTLE] = map(values[0], 0, 255, 1000, 2000);
+    nrf24_rcData[YAW] =      map(values[1],      0, 1024, 1000, 2000);
+    nrf24_rcData[PITCH] =    map(values[2],    0, 255, 1000, 2000);
+    nrf24_rcData[ROLL] =     map(values[3],     0, 255, 1000, 2000);
 
 //    nrf24_rcData[THROTTLE] = map(nrf24Data.throttle, 0, 255, 1000, 2000);
 //    nrf24_rcData[YAW] =      map(nrf24Data.yaw,      0, 1024, 1000, 2000);
