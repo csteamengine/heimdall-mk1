@@ -17,24 +17,6 @@ const byte address[6] = "00001";
 RF24 radio(7, 8); // CE, CSN
 uint16_t values[8];
 
-struct packet {
-  uint8_t throttle;
-  uint8_t yaw;
-  uint8_t pitch;
-  uint8_t roll;
-  boolean plus = false;
-  boolean minus = false;
-  boolean homebutton = false;
-  boolean dup = false;
-  boolean dleft = false;
-  boolean ddown = false;
-  boolean dright = false;
-  boolean xbutton = false;
-  boolean circle = false;
-  boolean triangle = false;
-  boolean square = false;
-};
-
 packet nrf24Data;
 
 void resetRF24Data() 
@@ -61,13 +43,21 @@ void NRF24_Read_RC() {
   if ( radio.available() ) {
 //    TODO replace this with the packet struct
     radio.read(&values, sizeof(values));
+//    TODO uncomment this line.
+//    radio.read(&nrf24Data, sizeof(nrf24Data));
 
     lastRecvTime = now;
+    
 //    TODO replace this with the packet struct
     nrf24_rcData[THROTTLE] = map(values[3], 0, 255, 1000, 2000);
     nrf24_rcData[YAW] =      map(values[2],      0, 1024, 1000, 2000);
     nrf24_rcData[PITCH] =    map(values[1],    0, 255, 1000, 2000);
     nrf24_rcData[ROLL] =     map(values[0],     0, 255, 1000, 2000);
+
+//    nrf24_rcData[THROTTLE] = map(nrf24Data.throttle, 0, 255, 1000, 2000);
+//    nrf24_rcData[YAW] =      map(nrf24Data.yaw,      0, 1024, 1000, 2000);
+//    nrf24_rcData[PITCH] =    map(nrf24Data.pitch,    0, 255, 1000, 2000);
+//    nrf24_rcData[ROLL] =     map(nrf24Data.roll,     0, 255, 1000, 2000);
 
   }
   if ( now - lastRecvTime > 1000 ) {

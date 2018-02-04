@@ -24,7 +24,19 @@ struct packet {
   uint8_t yaw;
   uint8_t pitch;
   uint8_t roll;
+  boolean plus = false;
+  boolean minus = false;
+  boolean homebutton = false;
+  boolean dup = false;
+  boolean dleft = false;
+  boolean ddown = false;
+  boolean dright = false;
+  boolean xbutton = false;
+  boolean circle = false;
+  boolean triangle = false;
+  boolean square = false;
 };
+
 
 extern packet nrf24Data;
 extern int16_t nrf24_rcData[RC_CHANS];
