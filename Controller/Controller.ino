@@ -30,10 +30,10 @@ uint16_t values[16];
 
 //TODO get radio to work with structs
 struct packet {
-  uint8_t throttle;
-  uint8_t yaw;
-  uint8_t pitch;
-  uint8_t roll;
+  uint8_t throttle = 125;
+  uint8_t yaw = 125;
+  uint8_t pitch = 125;
+  uint8_t roll = 125;
   boolean plus = false;
   boolean minus = false;
   boolean homebutton = false;
@@ -101,10 +101,10 @@ void initRadio(){
 }
 
 void readInputData(){
-  data.throttle = map(analogRead(LY), 0, 1023, 0, 255);
-  data.yaw = map(analogRead(LX), 0, 1023, 0, 255);
-  data.roll = map(analogRead(RX), 0, 1023, 0, 255);
-  data.pitch = map(analogRead(RY), 0, 1023, 0, 255); 
+  data.throttle = map(analogRead(RY), 0, 1023, 0, 255);
+  data.yaw = map(analogRead(RX), 0, 1023, 0, 255);
+  data.roll = map(analogRead(LX), 0, 1023, 0, 255);
+  data.pitch = map(analogRead(LY), 0, 1023, 0, 255); 
   data.dup = readButton(DUP);
   data.dleft = readButton(DLEFT);
   data.ddown = readButton(DDOWN);
