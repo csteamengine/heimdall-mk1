@@ -26,8 +26,6 @@
 RF24 radio(9,10);
 const uint64_t writingPipe = 0xF0F0F0F0E1LL;
 const byte address[6] = "00001";
-uint16_t values[16];
-
 
 //TODO get radio to work with structs
 struct packet {
@@ -79,15 +77,11 @@ void setup() {
 }
 
 void loop() {
-//  readInputData();
+  readInputData();
  
-  readInputArray();
-
-// TODO uncomment this line to send radio signal
-  radio.write(&values, sizeof(values));
+  radio.write(&data, sizeof(data));
 
 //  debugInput(data);
-//  debugInputArray();
 }
 
 void sendToPi(){
@@ -118,48 +112,6 @@ void readInputData(){
   data.plus = readButton(BUTTONPLUS);
   data.minus = readButton(BUTTONMINUS);
   data.homebutton = readButton(BUTTONHOME);
-}
-
-void readInputArray(){
-  values[0] = map(analogRead(RY), 0, 1023, 0, 255);
-  values[1] = map(analogRead(RX), 0, 1023, 0, 255);
-  values[2] = map(analogRead(LY), 0, 1023, 0, 255);
-  values[3] = map(analogRead(LX), 0, 1023,0, 255);
-  values[4] = 0;
-  values[5] = 0;
-  values[6] = 0;
-  values[7] = 0;
-  values[8] = readButton(DUP);
-  values[9] = readButton(DLEFT);
-  values[10] = readButton(DDOWN);
-  values[11] = readButton(DRIGHT);
-  values[12] = readButton(BUTTONPLUS);
-  values[13] = readButton(BUTTONMINUS);
-  values[14] = readButton(BUTTONHOME);
-  values[15] = 0;
-}
-
-void debugInputArray(){
-    Serial.print(values[0]);
-  Serial.print(" : ");
-  Serial.print(values[1]);
-  Serial.print(" : ");
-  Serial.print(values[2]);
-  Serial.print(" : ");
-  Serial.print(values[3]);
-  Serial.print(readButton(DUP));
-  Serial.print(" : ");
-  Serial.print(readButton(DLEFT));
-  Serial.print(" : ");
-  Serial.print(readButton(DDOWN));
-  Serial.print(" : ");
-  Serial.print(readButton(DRIGHT));
-  Serial.print(" : ");
-  Serial.print(readButton(BUTTONPLUS));
-  Serial.print(" : ");
-  Serial.print(readButton(BUTTONMINUS));
-  Serial.print(" : ");
-  Serial.println(readButton(BUTTONHOME));
 }
 
 void debugInput(packet inputs){
