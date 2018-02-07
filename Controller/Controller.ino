@@ -8,13 +8,13 @@
 #define LY A1
 #define LX A0
 
-#define DUP 13
-#define DLEFT 12
+#define DUP 2
+#define DLEFT 0
 #define DDOWN 11
 #define DRIGHT 8
 
-#define BUTTONPLUS 0
-#define BUTTONMINUS 0
+#define BUTTONPLUS A4
+#define BUTTONMINUS A5
 
 #define BUTTONHOME 7
 
@@ -72,7 +72,6 @@ void setup() {
   pinMode(TRIANGLE, INPUT_PULLUP);
   pinMode(SQUARE, INPUT_PULLUP);
   
-  Serial.begin(9600);
   initRadio();
 }
 
@@ -81,7 +80,9 @@ void loop() {
  
   radio.write(&data, sizeof(data));
 
-//  debugInput(data);
+  debugInput(data);
+
+//  delay(500);
 }
 
 void sendToPi(){
