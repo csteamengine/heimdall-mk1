@@ -78,7 +78,7 @@ void setup() {
 void loop() {
   readInputData();
  
-  radio.write(&data, sizeof(data));
+//  radio.write(&data, sizeof(data));
 
   debugInput(data);
 
