@@ -10,13 +10,13 @@
 
 #define DUP 2
 #define DLEFT 0
-#define DDOWN 11
+#define DDOWN 7
 #define DRIGHT 8
 
 #define BUTTONPLUS A4
 #define BUTTONMINUS A5
 
-#define BUTTONHOME 7
+#define BUTTONHOME 11
 
 #define XBUTTON 6
 #define CIRCLE 5
@@ -78,9 +78,9 @@ void setup() {
 void loop() {
   readInputData();
  
-//  radio.write(&data, sizeof(data));
+  radio.write(&data, sizeof(data));
 
-  debugInput(data);
+//  debugInput(data);
 
 //  delay(500);
 }
