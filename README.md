@@ -11,3 +11,9 @@ The goal of this project is to create my own quadcopter using a modified version
 * Video recording
 * Image Capture
 
+# Future Goals
+* Altitude and position hold
+* GPS flight planning
+* Retractable landing gear
+* TRICKS!?!?!?
+* Mark II - Start over and make it better!
