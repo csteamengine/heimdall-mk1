@@ -1,3 +1,4 @@
+![Heimdall Logo](https://github.com/csteamengine/heimdall-mk1/blob/master/heimdalllogo.png)
 # Heimdall Mark I
 The goal of this project is to create my own quadcopter using a modified version of the open source MultiWii flight control software in junction with the EZ-Wifibroadcast FPV system. As this project is still under development, I haven't taken the time to do a full write up of the parts and processes involved, but I will try to keep it as updated as possible during development.
 
