@@ -18,7 +18,7 @@ void initializeServo();
 // its not possible to change a PWM output pin just by changing the order
 #if defined(PROMINI)
   #if defined(NRF24_RX)
-    uint8_t PWM_PIN[8] = {9,6,5,3,A2,12,10,11};   //use pin 6 and 5 instead of 10 and 11 - only valid for quad!
+    uint8_t PWM_PIN[8] = {9,6,5,3,A2,12,10,11};   //RearR, FrontR, RearL, FrontL, use pin 6 and 5 instead of 10 and 11 - only valid for quad!
   #else
     uint8_t PWM_PIN[8] = {9,6,5,3,6,5,A2,12};   //for a quad+: rear,right,left,front
   #endif

@@ -3,8 +3,8 @@
 
 #define SERIAL_DEBUG true
 
-#define RY A3
-#define RX A2
+#define RY A5
+#define RX A4
 #define LY A1
 #define LX A0
 
@@ -13,8 +13,8 @@
 #define DDOWN 7
 #define DRIGHT 8
 
-#define BUTTONPLUS A4
-#define BUTTONMINUS A5
+#define BUTTONPLUS A2
+#define BUTTONMINUS A3
 
 #define BUTTONHOME 11
 

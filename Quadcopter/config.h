@@ -165,7 +165,7 @@
       /* I2C gyroscope */
       //#define WMP
       //#define ITG3050
-      //#define ITG3200
+      //#define ITG3200d
       //#define MPU3050
       //#define L3G4200D
       #define MPU6050       //combo + ACC
@@ -182,12 +182,12 @@
       //#define MMA8451Q
 
       /* I2C barometer */
-      //#define BMP085
+      #define BMP085
       //#define MS561101BA
 
       /* I2C magnetometer */
       //#define HMC5843
-      //#define HMC5883
+      #define HMC5883
       //#define AK8975
       //#define MAG3110
 
@@ -226,8 +226,8 @@
     #define PID_CONTROLLER 1
 
     /* NEW: not used anymore for servo coptertypes  <== NEEDS FIXING - MOVE TO WIKI */
-    #define YAW_DIRECTION 1
-    //#define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
+//    #define YAW_DIRECTION 1
+    #define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
 
     //#define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
 
