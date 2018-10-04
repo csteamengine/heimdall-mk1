@@ -18,3 +18,6 @@ The goal of this project is to create my own quadcopter using a modified version
 * Retractable landing gear
 * TRICKS!?!?!?
 * Mark II - Start over and make it better!
+
+# Team
+This project is being developed solely by me, at this point, but if you feel like contributing to this project, just feel free to let me know.
