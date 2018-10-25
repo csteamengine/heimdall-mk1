@@ -45,7 +45,7 @@ void NRF24_Read_RC() {
     lastRecvTime = now;
 
     nrf24_rcData[THROTTLE] = map(nrf24Data.throttle, 0, 255, 1000, 2000);
-    nrf24_rcData[YAW] =      map(nrf24Data.yaw,      0, 1024, 1000, 2000);
+    nrf24_rcData[YAW] =      map(nrf24Data.yaw,      0, 255, 1000, 2000);
     nrf24_rcData[PITCH] =    map(nrf24Data.pitch,    0, 255, 1000, 2000);
     nrf24_rcData[ROLL] =     map(nrf24Data.roll,     0, 255, 1000, 2000);
 //  TODO set the rest of the inputs fron nrf24Data

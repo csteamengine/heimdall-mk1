@@ -3,20 +3,20 @@
 
 #define SERIAL_DEBUG true
 
-#define RY A3
-#define RX A2
+#define RY A5
+#define RX A4
 #define LY A1
 #define LX A0
 
-#define DUP 13
-#define DLEFT 12
-#define DDOWN 11
+#define DUP 2
+#define DLEFT 0
+#define DDOWN 7
 #define DRIGHT 8
 
-#define BUTTONPLUS 0
-#define BUTTONMINUS 0
+#define BUTTONPLUS A2
+#define BUTTONMINUS A3
 
-#define BUTTONHOME 7
+#define BUTTONHOME 11
 
 #define XBUTTON 6
 #define CIRCLE 5
@@ -72,7 +72,6 @@ void setup() {
   pinMode(TRIANGLE, INPUT_PULLUP);
   pinMode(SQUARE, INPUT_PULLUP);
   
-  Serial.begin(9600);
   initRadio();
 }
 
@@ -81,7 +80,9 @@ void loop() {
  
   radio.write(&data, sizeof(data));
 
-//  debugInput(data);
+  debugInput(data);
+
+//  delay(500);
 }
 
 void sendToPi(){
