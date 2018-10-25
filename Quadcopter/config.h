@@ -226,8 +226,8 @@
     #define PID_CONTROLLER 1
 
     /* NEW: not used anymore for servo coptertypes  <== NEEDS FIXING - MOVE TO WIKI */
-    #define YAW_DIRECTION 1
-    //#define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
+    //#define YAW_DIRECTION 1
+    #define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
 
     //#define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
 
