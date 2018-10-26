@@ -80,7 +80,7 @@ void loop() {
  
   radio.write(&data, sizeof(data));
 
-  debugInput(data);
+//  debugInput(data);
 
 //  delay(500);
 }
