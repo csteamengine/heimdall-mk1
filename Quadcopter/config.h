@@ -187,7 +187,7 @@
 
       /* I2C magnetometer */
       //#define HMC5843
-      #define HMC5883
+      //#define HMC5883
       //#define AK8975
       //#define MAG3110
 
