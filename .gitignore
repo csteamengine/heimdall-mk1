@@ -1,6 +1,11 @@
 
 # Created by https://www.gitignore.io/api/macos,windows
 
+.pio
+.clang_complete
+.gcc-flags.json
+
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
