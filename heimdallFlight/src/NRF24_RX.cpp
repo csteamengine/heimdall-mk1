@@ -26,9 +26,8 @@ void resetRF24Data()
   nrf24Data.yaw = 128;
   nrf24Data.pitch = 128;
   nrf24Data.roll = 128;
-  nrf24Data.dial1 = 0;
-  nrf24Data.dial2 = 0;
-  nrf24Data.switches = 0;
+  //each byte is another trim button
+  nrf24Data.trim = 0;
 }
 
 void resetRF24AckPayload()

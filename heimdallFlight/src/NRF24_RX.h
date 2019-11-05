@@ -19,26 +19,28 @@ You can change CE and CSN in NRF24_RC.cpp
 #if defined(NRF24_RX)
 
 // The sizeof this struct should not exceed 32 bytes
-struct packet {
-  uint8_t throttle;
-  uint8_t yaw;
-  uint8_t pitch;
-  uint8_t roll;
-  boolean plus = false;
-  boolean minus = false;
-  boolean homebutton = false;
-  boolean dup = false;
-  boolean dleft = false;
-  boolean ddown = false;
-  boolean dright = false;
-  boolean xbutton = false;
-  boolean circle = false;
-  boolean triangle = false;
-  boolean square = false;
+struct RF24Data {
+  byte throttle;
+  byte yaw;
+  byte pitch;
+  byte roll;
+  byte dial1;
+  byte dial2;
+  byte switches;
 };
 
+struct RF24AckPayload {
+  float lat;
+  float lon;
+  int16_t heading;
+  int16_t pitch;
+  int16_t roll;
+  int32_t alt;
+  byte flags;
+};
 
-extern packet nrf24Data;
+extern RF24Data nrf24Data;
+extern RF24AckPayload nrf24AckPayload;
 extern int16_t nrf24_rcData[RC_CHANS];
 
 void NRF24_Init();

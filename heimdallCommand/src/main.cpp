@@ -1,13 +1,10 @@
 #include "main.h"
-#include <SPI.h>
-#include <nRF24L01.h>
-#include <RF24.h>
-#include "printf.h"
 
 #define THROTTLE A0
 #define YAW 	 A1
 #define PITCH    A2
 #define ROLL	 A3
+#define ARMED_PIN 4
 
 const uint64_t pipeOut = 0xE8E8F0F0E1LL;
 
@@ -15,30 +12,8 @@ RF24 radio(9, 10);
 
 const byte serialHeader[4] = {255,254,253,252};
 
-struct RadioData {
-  byte throttle;
-  byte yaw;
-  byte pitch;
-  byte roll;
-  byte dial1;
-  byte dial2;
-  byte switches; // bitflag
-};
-
 RadioData radioData;
-
-struct AckPayload {
-  float lat;
-  float lon;
-  int16_t heading;
-  int16_t pitch;
-  int16_t roll;
-  int32_t alt;
-  byte flags;
-};
-
 AckPayload ackPayload;
-
 
 int pins[] = {12, 11, 10, 9, 8, 7, 6, 5};
 int buttons[] = {false, false, false, false,  false,  false,  false,  false};
@@ -49,23 +24,26 @@ int input;
 
 void setup()
 {
+  //Init Serial Stuff
   Serial.begin(9600);
   printf_begin();
-  pinMode(13, OUTPUT);
 
+  //Init Ouput Pins
+  pinMode(13, OUTPUT);
+  pinMode(ARMED_PIN, OUTPUT);
+
+  //Init Input Pins
   for(int i = 0; i < sizeof(pins)/sizeof(pins[0]); i++){
     pinMode(pins[i], INPUT_PULLUP);
   }
 
+  //Init Radio Stuff
   radio.begin();
   radio.setDataRate(RF24_250KBPS);
   radio.setAutoAck(1);                    // Ensure autoACK is enabled
   radio.enableAckPayload();               // Allow optional ack payloads
-
   radio.openWritingPipe(pipeOut);
-
   resetRadioData();
-
   radio.printDetails();
 
 }
@@ -80,9 +58,7 @@ void loop()
   readSticks();
   //printSticks();
 
-    radioData.switches = 0;
-  if ( ! digitalRead(4) ) radioData.switches |= 0x1;
-  if ( ! digitalRead(2) ) radioData.switches |= 0x2;
+  readSwitches();
 
   radio.write(&radioData, sizeof(RadioData));
 
@@ -92,6 +68,13 @@ void loop()
 
   //adjustAckPayloadValues();
   writeDataToSerial();
+}
+
+//TODO Update this method to handle button presses and switches
+void readSwitches(){
+  // radioData.switches = 0;
+  // if ( ! digitalRead(4) ) radioData.switches |= 0x1;
+  // if ( ! digitalRead(2) ) radioData.switches |= 0x2;
 }
 
 void resetRadioData()
