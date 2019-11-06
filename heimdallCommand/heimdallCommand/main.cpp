@@ -21,12 +21,15 @@
 #define ROLL_TRIM_UP 6
 #define ROLL_TRIM_DOWN 5
 #define ARMED_PIN 13
+#define CE_PIN 4
+#define CSN_PIN 3
+
 
 const uint64_t pipeOut = 0xE8E8F0F0E1LL;
 const byte setBits[] = {0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80};
 
-
-RF24 radio(9, 10);
+// radio(CE, CSN)
+RF24 radio(CE_PIN, CSN_PIN);
 
 const byte serialHeader[4] = {255,254,253,252};
 

@@ -29,6 +29,7 @@ void resetRF24Data()
   nrf24Data.trim = 0;
 }
 
+//TODO Add Trim Values?
 void resetRF24AckPayload()
 {
   nrf24AckPayload.lat = 0;
@@ -59,6 +60,7 @@ void NRF24_Read_RC() {
   static unsigned long lastRecvTime = 0;
 
   //TODO These are hard coded, replace with actual values
+  //TODO potentially Add Trim values? Other useful information
   nrf24AckPayload.lat = 35.62;
   nrf24AckPayload.lon = 139.68;
   nrf24AckPayload.heading = att.heading;
