@@ -1,4 +1,3 @@
-
 /*
 Tested with 16MHz pro-mini, QuadX and https://github.com/gcopeland/RF24
 Motors use pins 9,6,5,3 instead of 9,10,11,3
@@ -26,7 +25,7 @@ struct RF24Data {
   byte roll;
   byte dial1;
   byte dial2;
-  byte switches;
+  byte trim;
 };
 
 struct RF24AckPayload {

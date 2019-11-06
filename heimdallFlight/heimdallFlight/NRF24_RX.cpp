@@ -1,4 +1,3 @@
-
 #include "Arduino.h"
 #include "config.h"
 #include "def.h"
@@ -59,12 +58,15 @@ void NRF24_Read_RC() {
 
   static unsigned long lastRecvTime = 0;
 
+  //TODO These are hard coded, replace with actual values
   nrf24AckPayload.lat = 35.62;
   nrf24AckPayload.lon = 139.68;
   nrf24AckPayload.heading = att.heading;
   nrf24AckPayload.pitch = att.angle[PITCH];
   nrf24AckPayload.roll = att.angle[ROLL];
   nrf24AckPayload.alt = alt.EstAlt;
+
+  //f is the flags_struct_t type which has bitfields 1 bit long
   memcpy(&nrf24AckPayload.flags, &f, 1); // first byte of status flags
 
   unsigned long now = millis();

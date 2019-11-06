@@ -1,8 +1,3 @@
-#include <SPI.h>
-#include <nRF24L01.h>
-#include <RF24.h>
-#include "printf.h"
-
 struct RadioData {
   byte throttle;
   byte yaw;
@@ -10,7 +5,7 @@ struct RadioData {
   byte roll;
   byte dial1;
   byte dial2;
-  byte switches; // bitflag
+  byte trim; // bitflag
 };
 
 struct AckPayload {
@@ -25,11 +20,13 @@ struct AckPayload {
 
 extern RadioData radioData;
 extern AckPayload ackPayload;
-
+void readButtons();
+void readTrim();
 void readSwitches();
 void resetRadioData();
-void writeDataToSerial();
 void cleanData();
 void readSticks();
+void detectPresses();
 void detectPress(int pin, int input);
 void printSticks();
+void writeDataToSerial();
