@@ -12,6 +12,9 @@
 #define YAW 	 A1
 #define PITCH    A2
 #define ROLL	 A3
+
+//TODO update the button names to what function is actually accomplished by the button
+//Likely won't need throttle or YAW trim
 #define THROTTLE_TRIM_UP 12
 #define THROTTLE_TRIM_DOWN 11
 #define YAW_TRIM_UP 10

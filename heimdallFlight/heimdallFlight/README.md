@@ -1,1 +1,0 @@
-# MultiWii-based-quadcopter

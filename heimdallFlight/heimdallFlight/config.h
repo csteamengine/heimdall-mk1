@@ -57,19 +57,19 @@
     /* Set the minimum throttle command sent to the ESC (Electronic Speed Controller)
        This is the minimum value that allow motors to run at a idle speed  */
     //#define MINTHROTTLE 1300 // for Turnigy Plush ESCs 10A
-//    #define MINTHROTTLE 1120 // for Super Simple ESCs 10A
-    #define MINTHROTTLE 1064 // special ESC (simonk)
+    //#define MINTHROTTLE 1120 // for Super Simple ESCs 10A
+    //#define MINTHROTTLE 1064 // special ESC (simonk)
     //#define MINTHROTTLE 1050 // for brushed ESCs like ladybird
-//    #define MINTHROTTLE 1080 // (*) (**)
+    #define MINTHROTTLE 1150 // (*) (**)
 
   /****************************    Motor maxthrottle    *******************************/
     /* this is the maximum value for the ESCs at full power, this value can be increased up to 2000 */
-    #define MAXTHROTTLE 1920
+    #define MAXTHROTTLE 1850
 
   /****************************    Mincommand          *******************************/
     /* this is the value for the ESCs when they are not armed
        in some cases, this value must be lowered down to 900 for some specific ESCs, otherwise they failed to initiate */
-    #define MINCOMMAND  1005
+    #define MINCOMMAND  1000
 
   /**********************************  I2C speed for old WMP config (useless config for other sensors)  *************/
     #define I2C_SPEED 100000L     //100kHz normal mode, this value must be used for a genuine WMP
@@ -104,6 +104,7 @@
       //#define QUADRINO        // full FC board 9DOF+baro board from witespy  with BMP085 baro     <- confirmed by Alex
       //#define QUADRINO_ZOOM   // full FC board 9DOF+baro board from witespy  second edition
       //#define QUADRINO_ZOOM_MS// full FC board 9DOF+baro board from witespy  second edition       <- confirmed by Alex
+      //#define QUADRINO_NANO   // full FC board 9DOF+baro board+GPS from Lynxmotion / RobotShop    <- confirmed by Alex
       //#define ALLINONE        // full FC board or standalone 9DOF+baro board from CSG_EU
       //#define AEROQUADSHIELDv2
       //#define ATAVRSBIN1      // Atmel 9DOF (Contribution by EOSBandi). requires 3.3V power.
@@ -133,7 +134,7 @@
       //#define GY_85           // Chinese 9 DOF with  ITG3205 ADXL345 HMC5883L LLC
       //#define GY_86           // Chinese 10 DOF with  MPU6050 HMC5883L MS5611, LLC
       //#define GY_88 // Chinese 10 DOF with MPU6050 HMC5883L BMP085, LLC
-//      #define GY_521          // Chinese 6  DOF with  MPU6050, LLC
+      //#define GY_521          // Chinese 6  DOF with  MPU6050, LLC
       //#define INNOVWORKS_10DOF // with ITG3200, BMA180, HMC5883, BMP085 available here http://www.diymulticopter.com
       //#define INNOVWORKS_6DOF // with ITG3200, BMA180 available here http://www.diymulticopter.com
       //#define MultiWiiMega    // MEGA + MPU6050+HMC5883L+MS5611 available here http://www.diymulticopter.com
@@ -150,7 +151,7 @@
       //#define MEGAWAP_V2_STD     // available here: http://www.multircshop.com                    <- confirmed by Alex
       //#define MEGAWAP_V2_ADV
       //#define HK_MultiWii_SE_V2  // Hobbyking board with MPU6050 + HMC5883L + BMP085
-      //#define HK_MultiWii_328P   // Also labeled "Hobbybro" on the back.  ITG3205 + BMA180 + BMP085 + NMC5583L + DSM2 Connector (Spektrum Satellite)  
+      //#define HK_MultiWii_328P   // Also labeled "Hobbybro" on the back.  ITG3205 + BMA180 + BMP085 + NMC5583L + DSM2 Connector (Spektrum Satellite)
       //#define RCNet_FC           // RCNet FC with MPU6050 and MS561101BA  http://www.rcnet.com
       //#define RCNet_FC_GPS       // RCNet FC with MPU6050 + MS561101BA + HMC5883L + UBLOX GPS http://www.rcnet.com
       //#define FLYDU_ULTRA        // MEGA+10DOF+MT3339 FC
@@ -159,18 +160,18 @@
       //#define MultiWii_32U4_SE_no_baro // Hextronik MultiWii_32U4_SE without the MS561101BA to free flash-memory for other functions
       //#define Flyduino9DOF       // Flyduino 9DOF IMU MPU6050+HMC5883l
       //#define Nano_Plane         // Multiwii Plane version with tail-front LSM330 sensor http://www.radiosait.ru/en/page_5324.html
-      
+
     /***************************    independent sensors    ********************************/
       /* leave it commented if you already checked a specific board above */
       /* I2C gyroscope */
       //#define WMP
       //#define ITG3050
-      //#define ITG3200d
+      //#define ITG3200
       //#define MPU3050
       //#define L3G4200D
       #define MPU6050       //combo + ACC
       //#define LSM330        //combo + ACC
-      
+
       /* I2C accelerometer */
       //#define MMA7455
       //#define ADXL345
@@ -187,7 +188,7 @@
 
       /* I2C magnetometer */
       //#define HMC5843
-      //#define HMC5883
+      #define HMC5883
       //#define AK8975
       //#define MAG3110
 
@@ -226,16 +227,16 @@
     #define PID_CONTROLLER 1
 
     /* NEW: not used anymore for servo coptertypes  <== NEEDS FIXING - MOVE TO WIKI */
-//    #define YAW_DIRECTION 1
-    #define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
+    #define YAW_DIRECTION -1
+    //#define YAW_DIRECTION -1 // if you want to reverse the yaw correction direction
 
-    //#define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
+    #define ONLYARMWHENFLAT //prevent the copter from arming when the copter is tilted
 
    /********************************    ARM/DISARM    *********************************/
    /* optionally disable stick combinations to arm/disarm the motors.
      * In most cases one of the two options to arm/disarm via TX stick is sufficient */
-    //#define ALLOW_ARM_DISARM_VIA_TX_YAW
-    #define ALLOW_ARM_DISARM_VIA_TX_ROLL
+    #define ALLOW_ARM_DISARM_VIA_TX_YAW
+    //#define ALLOW_ARM_DISARM_VIA_TX_ROLL
 
     /********************************    SERVOS      *********************************/
     /* info on which servos connect where and how to setup can be found here
@@ -272,7 +273,7 @@
     //#define FLAPPERONS    AUX4          // Mix Flaps with Aileroins.
     #define FLAPPERON_EP   { 1500, 1700 } // Endpooints for flaps on a 2 way switch else set {1020,2000} and program in radio.
     #define FLAPPERON_INVERT { -1, 1 }    // Change direction om flapperons { Wing1, Wing2 }
-    
+
     //#define FLAPS                       // Traditional Flaps on SERVO3.
     //#define FLAPSPEED     3             // Make flaps move slowm Higher value is Higher Speed.
 
@@ -287,8 +288,8 @@
     //#define GOVERNOR_D 4     // (*) decay timing. Higher value -> takes longer to return throttle to normal. Must be >=1;
 
     /* tail precomp from collective */
-    //#define YAW_COLL_PRECOMP 15           // (*) proportional factor in 0.1. Higher value -> higher precomp effect. value of 10 equals no/neutral effect
-    //#define YAW_COLL_PRECOMP_DEADBAND 120 // (*) deadband for collective pitch input signal around 0-pitch input value
+    #define YAW_COLL_PRECOMP 10           // (*) proportional factor in 0.1. Higher value -> higher precomp effect. value of 10 equals no/neutral effect
+    #define YAW_COLL_PRECOMP_DEADBAND 120 // (*) deadband for collective pitch input signal around 0-pitch input value
 
     //#define VOLTAGEDROP_COMPENSATION // voltage impact correction
 
@@ -303,8 +304,8 @@
     /* Servo mixing for heli 120
                          {Coll,Nick,Roll} */
     #define SERVO_NICK   { +10, -10,  0 }
-    #define SERVO_LEFT   { +10, +5, +10 } 
-    #define SERVO_RIGHT  { +10, +5, -10 } 
+    #define SERVO_LEFT   { +10, +5, +10 }
+    #define SERVO_RIGHT  { +10, +5, -10 }
 
     /* Limit Maximum controll for Roll & Nick  in 0-100% */
     #define CONTROL_RANGE   { 100, 100 }      //  { ROLL,PITCH }
@@ -315,7 +316,7 @@
 
   /***********************      your individual mixing     ***********************/
     /* if you want to override an existing entry in the mixing table, you may want to avoid editing the
-     * mixTable() function for every version again and again. 
+     * mixTable() function for every version again and again.
      * howto: http://www.multiwii.com/wiki/index.php?title=Config.h#Individual_Mixing
      */
     //#define MY_PRIVATE_MIXING "filename.h"
@@ -364,8 +365,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //#define SERIAL_SUM_PPM         ROLL,PITCH,THROTTLE,YAW,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For Robe/Hitec/Futaba
       //#define SERIAL_SUM_PPM         ROLL,PITCH,YAW,THROTTLE,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For Multiplex
       //#define SERIAL_SUM_PPM         PITCH,ROLL,THROTTLE,YAW,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //For some Hitec/Sanwa/Others
-      #define SERIAL_SUM_PPM           THROTTLE,YAW,PITCH,ROLL,AUX1,AUX2,AUX3,AUX4,8,9,10,11
-
+      #define SERIAL_SUM_PPM         THROTTLE,YAW,ROLL,PITCH,AUX1,AUX2,AUX3,AUX4,8,9,10,11 //Modelcraft
 
       // Uncommenting following line allow to connect PPM_SUM receiver to standard THROTTLE PIN on MEGA boards (eg. A8 in CRIUS AIO)
       //#define PPM_ON_THROTTLE
@@ -381,12 +381,12 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //**************************
       // Defines that allow a "Bind" of a Spektrum or Compatible Remote Receiver (aka Satellite) via Configuration GUI.
       //   Bind mode will be same as declared above, if your TX is capable.
-      //   Ground, Power, and Signal must come from three adjacent pins. 
-      //   By default, these are Ground=4, Power=5, Signal=6.  These pins are in a row on most MultiWii shield boards. Pins can be overriden below.  
-      //   Normally use 3.3V regulator is needed on the power pin!!  If your satellite hangs during bind (blinks, but won't complete bind with a solid light), go direct 5V on all pins. 
+      //   Ground, Power, and Signal must come from three adjacent pins.
+      //   By default, these are Ground=4, Power=5, Signal=6.  These pins are in a row on most MultiWii shield boards. Pins can be overriden below.
+      //   Normally use 3.3V regulator is needed on the power pin!!  If your satellite hangs during bind (blinks, but won't complete bind with a solid light), go direct 5V on all pins.
       //**************************
-      //   For Pro Mini, the connector for the Satellite that resides on the FTDI can be unplugged and moved to these three adjacent pins. 
-      //#define SPEK_BIND             //Un-Comment for Spektrum Satellie Bind Support.  Code is ~420 bytes smaller without it. 
+      //   For Pro Mini, the connector for the Satellite that resides on the FTDI can be unplugged and moved to these three adjacent pins.
+      //#define SPEK_BIND             //Un-Comment for Spektrum Satellie Bind Support.  Code is ~420 bytes smaller without it.
       //#define SPEK_BIND_GROUND 4
       //#define SPEK_BIND_POWER  5
       //#define SPEK_BIND_DATA   6
@@ -447,7 +447,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
       //#define A32U4ALLPINS
 
     /**********************************    PWM Setup     **********************************/
-      /* activate all 6 hardware PWM outputs Motor 5 = D11 and 6 = D13. 
+      /* activate all 6 hardware PWM outputs Motor 5 = D11 and 6 = D13.
          note: not possible on the sparkfun promicro (pin 11 & 13 are not broken out there)
          if activated:
          Motor 1-6 = 10-bit hardware PWM
@@ -562,14 +562,14 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
      Original idea by Kraut Rob, first implementation HAdrian */
 
   //#define THROTTLE_ANGLE_CORRECTION 40
-  
+
   /*** HEADFREE : the copter can be controled by an absolute stick orientation, whatever the yaw orientation ***/
   //#define HEADFREE
-  
+
  /*************************        Advanced Headfree Mode             ********************/
- /* In Advanced Headfree mode when the copter is farther than ADV_HEADFREE_RANGE meters then 
-    the  bearing between home and copter position will become the control direction 
-    IF copter come closer than ADV_HEADFREE_RANGE meters, then the control direction freezed to the 
+ /* In Advanced Headfree mode when the copter is farther than ADV_HEADFREE_RANGE meters then
+    the  bearing between home and copter position will become the control direction
+    IF copter come closer than ADV_HEADFREE_RANGE meters, then the control direction freezed to the
     bearing between home and copter at the point where it crosses the ADV_HEADFREE_RANGE meter distance
     first implementation by HAdrian, mods by EOSBandi
  */
@@ -586,7 +586,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
   /*** FUNCTIONALITY TEMPORARY REMOVED ***/
     /* Temporarily Disables GPS_HOLD_MODE to be able to make it possible to adjust the Hold-position when moving the sticks.*/
     //#define AP_MODE 40  // Create a deadspan for GPS.
-        
+
   /************************   Assisted AcroTrainer    ************************************/
     /* Train Acro with auto recovery. Value set the point where ANGLE_MODE takes over.
        Remember to activate ANGLE_MODE first!...
@@ -595,16 +595,16 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
 
 
   /********                          Failsafe settings                 ********************/
-    /* Failsafe check pulses on four main control channels CH1-CH4. If the pulse is missing or bellow 985us (on any of these four channels) 
+    /* Failsafe check pulses on four main control channels CH1-CH4. If the pulse is missing or bellow 985us (on any of these four channels)
        the failsafe procedure is initiated. After FAILSAFE_DELAY time from failsafe detection, the level mode is on (if ACC is avaliable),
        PITCH, ROLL and YAW is centered and THROTTLE is set to FAILSAFE_THROTTLE value. You must set this value to descending about 1m/s or so
-       for best results. This value is depended from your configuration, AUW and some other params.  Next, after FAILSAFE_OFF_DELAY the copter is disarmed, 
+       for best results. This value is depended from your configuration, AUW and some other params.  Next, after FAILSAFE_OFF_DELAY the copter is disarmed,
        and motors is stopped. If RC pulse coming back before reached FAILSAFE_OFF_DELAY time, after the small quard time the RC control is returned to normal. */
     //#define FAILSAFE                                // uncomment  to activate the failsafe function
     #define FAILSAFE_DELAY     10                     // Guard time for failsafe activation after signal lost. 1 step = 0.1sec - 1sec in example
     #define FAILSAFE_OFF_DELAY 200                    // Time for Landing before motors stop in 0.1sec. 1 step = 0.1sec - 20sec in example
     #define FAILSAFE_THROTTLE  (MINTHROTTLE + 200)    // (*) Throttle level used for landing - may be relative to MINTHROTTLE - as in this case
-    
+
     #define FAILSAFE_DETECT_TRESHOLD  985
 
 
@@ -668,7 +668,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
        note: only the RX PIN is used in case of NMEA mode, the GPS is not configured by multiwii
        in NMEA mode the GPS must be configured to output GGA and RMC NMEA sentences (which is generally the default conf for most GPS devices)
        at least 5Hz update rate. uncomment the first line to select the GPS serial port of the arduino */
-       
+
     //#define GPS_SERIAL 2         // should be 2 for flyduino v2. It's the serial port number on arduino MEGA
                                    // must be 0 for PRO_MINI (ex GPS_PRO_MINI)
                                    // note: Now a GPS can share MSP on the same port. The only constrain is to not use it simultaneously, and use the same port speed.
@@ -676,23 +676,23 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
     // avoid using 115200 baud because with 16MHz arduino the 115200 baudrate have more than 2% speed error (57600 have 0.8% error)
     #define GPS_BAUD   57600       // GPS_BAUD will override SERIALx_COM_SPEED for the selected port
 
-   /* GPS protocol 
+   /* GPS protocol
        NMEA  - Standard NMEA protocol GGA, GSA and RMC  sentences are needed
-       UBLOX - U-Blox binary protocol, use the ublox config file (u-blox-config.ublox.txt) from the source tree 
+       UBLOX - U-Blox binary protocol, use the ublox config file (u-blox-config.ublox.txt) from the source tree
        MTK_BINARY16 and MTK_BINARY19 - MTK3329 chipset based GPS with DIYDrones binary firmware (v1.6 or v1.9)
        With UBLOX and MTK_BINARY you don't have to use GPS_FILTERING in multiwii code !!! */
 
-    
+
     //#define NMEA
     //#define UBLOX
     //#define MTK_BINARY16
     //#define MTK_BINARY19
     //#define INIT_MTK_GPS        // initialize MTK GPS for using selected speed, 5Hz update rate and GGA & RMC sentence or binary settings
-
+    //#define VENUS8
 
     /* I2C GPS device made with an independant arduino + GPS device
        including some navigation functions
-       contribution from EOSBandi   http://code.google.com/p/i2c-gps-nav/ 
+       contribution from EOSBandi   http://code.google.com/p/i2c-gps-nav/
        You have to use at least I2CGpsNav code r33 */
     /* all functionnalities allowed by SERIAL_GPS are now available for I2C_GPS: all relevant navigation computations are gathered in the main FC */
 
@@ -701,7 +701,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
     // If your I2C GPS board has Sonar support enabled
     //#define I2C_GPS_SONAR
 
-    /* indicate a valid GPS fix with at least 5 satellites by flashing the LED  - Modified by MIS - Using stable LED (YELLOW on CRIUS AIO) led work as sat number indicator 
+    /* indicate a valid GPS fix with at least 5 satellites by flashing the LED  - Modified by MIS - Using stable LED (YELLOW on CRIUS AIO) led work as sat number indicator
       - No GPS FIX -> LED blink at speed of incoming GPS frames
       - Fix and sat no. bellow 5 -> LED off
       - Fix and sat no. >= 5 -> LED blinks, one blink for 5 sat, two blinks for 6 sat, three for 7 ... */
@@ -710,7 +710,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
    //Enables the MSP_WP command set , which is used by WinGUI for displaying an setting up navigation
    //#define USE_MSP_WP
 
-   // HOME position is reset at every arm, uncomment it to prohibit it (you can set home position with GyroCalibration)    
+   // HOME position is reset at every arm, uncomment it to prohibit it (you can set home position with GyroCalibration)
    //#define DONT_RESET_HOME_AT_ARM
 
 /* GPS navigation can control the heading */
@@ -732,7 +732,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
 #define GPS_LEAD_FILTER               //(**)
 
 // add a 5 element moving average filter to GPS coordinates, helps eliminate gps noise but adds latency comment out to disable
-// use it with NMEA gps only 
+// use it with NMEA gps only
 //#define GPS_FILTERING                 //(**)
 
 // if we are within this distance to a waypoint then we consider it reached (distance is in cm)
@@ -785,13 +785,14 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
 
     /*****************************   The type of LCD     **********************************/
       /* choice of LCD attached for configuration and telemetry, see notes below */
-      //#define LCD_DUMMY       // No Physical LCD attached.  With this & LCD_CONF defined, TX sticks still work to set gains, by watching LED blink.  
+      //#define LCD_DUMMY       // No Physical LCD attached.  With this & LCD_CONF defined, TX sticks still work to set gains, by watching LED blink.
       //#define LCD_SERIAL3W    // Alex' initial variant with 3 wires, using rx-pin for transmission @9600 baud fixed
       //#define LCD_TEXTSTAR    // SERIAL LCD: Cat's Whisker LCD_TEXTSTAR Module CW-LCD-02 (Which has 4 input keys for selecting menus)
       //#define LCD_VT100       // SERIAL LCD: vt100 compatible terminal emulation (blueterm, putty, etc.)
       //#define LCD_TTY         // SERIAL LCD: useful to tweak parameters over cable with arduino IDE 'serial monitor'
       //#define LCD_ETPP        // I2C LCD: Eagle Tree Power Panel LCD, which is i2c (not serial)
       //#define LCD_LCD03       // I2C LCD: LCD03, which is i2c
+      //#define LCD_LCD03S      // SERIAL LCD: LCD03 whit serial 9600 baud comunication enabled.
       //#define OLED_I2C_128x64 // I2C LCD: OLED http://www.multiwii.com/forum/viewtopic.php?f=7&t=1350
       //#define OLED_DIGOLE     // I2C OLED from http://www.digole.com/index.php?productID=550
 
@@ -842,7 +843,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
   /***********************      LCD       telemetry            **************************/
   /**************************************************************************************/
 
-    /* to monitor system values (battery level, loop time etc. with LCD 
+    /* to monitor system values (battery level, loop time etc. with LCD
      * http://www.multiwii.com/wiki/index.php?title=LCD_Telemetry */
 
     /********************************    Activation     ***********************************/
@@ -878,6 +879,33 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
     //#define RX_RSSI
     //#define RX_RSSI_PIN A3
     //#define RX_RSSI_CHAN 8   //RSSI injection on selected channel (for PPM, Olrs, SBUS, etc.) (Starts at 0)
+
+  /********************************************************************/
+  /****                             TELEMETRY                      ****/
+  /********************************************************************/
+    // select one of the two protocols depending on your receiver
+    //#define FRSKY_TELEMETRY           // used for FRSKY twoway receivers with telemetry (D-series like D8R-II or D8R-XP)
+                                      // VBAT, Baro, MAG, GPS and POWERMETER are helpful
+                                      // VBAT_CELLS is optional for a forth screen on the display FLD-02
+    //#define SPORT_TELEMETRY           // for FRSKY twoway receivers with S.PORT telemetry (S-series like X4R/X6R/X8R), not implemented yet - TO BE DONE
+
+    // FRSKY common entries - valid for both protocols
+    #define TELEMETRY_SERIAL 3        // change if required
+
+    // FRSKY standard telemetry specific devices
+    #define FRSKY_FLD02               // send only data specific for the FRSKY display FLD-02
+    //#define OPENTX                    // send OpenTX specific data
+
+    // FRSKY standard telemetry specific selections
+    //#define COORDFORMAT_DECIMALMINUTES // uncomment to get the format DD°MM.mmmm for the coordinates - comment out to get the format DD.dddddd° for the coordinates
+    //#define KILOMETER_HOUR            // send speed in kilometers per hour instead of knots (default) - requested by OPENTX
+    #define TELEMETRY_ALT_BARO        // send BARO based altitude, calibrated to 0 when arming, recommended if BARO available
+    //#define TELEMETRY_ALT_GPS         // send GPS based altitude (altitude above see level), for FLD-02 don't use together with TELEMETRY_ALT_BARO
+    #define TELEMETRY_COURSE_MAG      // send MAG based course/heading, recommended if MAG available, but FLD-02 does not display
+    //#define TELEMETRY_COURSE_GPS      // send GPS based course/heading, don't use together with TELEMETRY_COURSE_MAG, FLD-02 does not display
+
+    // S.PORT specific entries
+    #define FRSKY_SPORT_A2_MAX 124    // A2 voltage is represented by a value in the range 0-255. A value of 16 results in 1.6V, 124 is 12.4V, etc
 
   /********************************************************************/
   /****                             Buzzer                         ****/
@@ -980,7 +1008,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
      * It must be 16 characters total,
      * The last 4 characters will be overwritten with the version number.
      */
-    #define BOARD_NAME "MultiWii   V-.--"
+    #define BOARD_NAME "HEIMDALL MK. 1"
     //                  123456789.123456
 
   /*************      Support multiple configuration profiles in EEPROM     ************/
@@ -995,6 +1023,8 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
 /*****************                                                                 ***************/
 /*************************************************************************************************/
 
+  #define VBAT_PRESCALER 16 // set this to 8 if vbatscale would exceed 255
+
   /**************************************************************************************/
   /********   special ESC with extended range [0-2000] microseconds  ********************/
   /**************************************************************************************/
@@ -1007,7 +1037,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
     //#define EXT_MOTOR_32KHZ
     //#define EXT_MOTOR_4KHZ
     //#define EXT_MOTOR_1KHZ
-  
+
     // for 32u4 proc
     //#define EXT_MOTOR_64KHZ
     //#define EXT_MOTOR_32KHZ
@@ -1035,8 +1065,8 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
        for use with digital servos
        dont use it with analog servos! thay may get damage. (some will work but be careful) */
     //#define SERVO_RFR_300HZ
-    
-  /***********************             HW PWM Servos             ***********************/ 
+
+  /***********************             HW PWM Servos             ***********************/
     /* HW PWM Servo outputs for Arduino Mega.. moves:
       Pitch   = pin 44
       Roll    = pin 45
@@ -1045,10 +1075,10 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
       SERVO5  = pin 12 (aileron right for fixed wing)
       SERVO6  = pin 6   (rudder for fixed wing)
       SERVO7  = pin 7   (elevator for fixed wing)
-      SERVO8  = pin 8   (motor for fixed wing)       */ 
+      SERVO8  = pin 8   (motor for fixed wing)       */
 
     #define MEGA_HW_PWM_SERVOS
- 
+
     /* HW PWM Servo outputs for 32u4 NanoWii, MicroWii etc. - works with either the variable SERVO_RFR_RATE or
      * one of the 3 fixed servo.refresh.rates *
      * Tested only for heli_120, i.e. 1 motor + 4 servos, moves..
@@ -1091,7 +1121,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
      * reset in GUI will not work on PIDs
      */
     //#define SUPPRESS_DEFAULTS_FROM_GUI
-    
+
     //#define DISABLE_SETTINGS_TAB  // Saves ~400bytes on ProMini
 
   /********************************************************************/
@@ -1144,8 +1174,8 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
        You cannot fly with this special version. It is only to be used for calibrating ESCs
        Read How To at http://code.google.com/p/multiwii/wiki/ESCsCalibration */
     #define ESC_CALIB_LOW  MINCOMMAND
-    #define ESC_CALIB_HIGH 1900
-//    #define ESC_CALIB_CANNOT_FLY  //  uncomment to activate
+    #define ESC_CALIB_HIGH 2000
+    //#define ESC_CALIB_CANNOT_FLY  // uncomment to activate
 
   /****           internal frequencies                             ****/
     /* frequenies for rare cyclic actions in the main loop, depend on cycle time
@@ -1161,7 +1191,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
   /********************************************************************/
   /****           Dynamic Motor/Prop Balancing                     ****/
   /********************************************************************/
-  /*                   !!! No Fly Mode !!!                            */ 
+  /*                   !!! No Fly Mode !!!                            */
 
     //#define DYNBALANCE   // (**) Dynamic balancing controlled from Gui
 
@@ -1201,4 +1231,3 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
 /*************************************************************************************************/
 
 #endif /* CONFIG_H_ */
-

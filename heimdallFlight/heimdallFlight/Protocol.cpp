@@ -59,7 +59,7 @@
 #define MSP_SET_WP               209   //in message          sets a given WP (WP#,lat, lon, alt, flags)
 #define MSP_SELECT_SETTING       210   //in message          Select Setting Number (0-2)
 #define MSP_SET_HEAD             211   //in message          define a new heading hold direction
-#define MSP_SET_SERVO_CONF       212   //in message          Servo settingskj
+#define MSP_SET_SERVO_CONF       212   //in message          Servo settings
 #define MSP_SET_MOTOR            214   //in message          PropBalance function
 #define MSP_SET_NAV_CONFIG       215   //in message          Sets nav config parameters - write to the eeprom  
 
@@ -149,18 +149,22 @@ static void serializeNames(PGM_P s) {
   tailSerialReply();
 }
 
+static void __attribute__ ((noinline)) s_struct_w(uint8_t *cb,uint8_t siz) {
+  while(siz--) *cb++ = read8();
+}
+
+static void s_struct_partial(uint8_t *cb,uint8_t siz) {
+  while(siz--) serialize8(*cb++);
+}
+
 static void s_struct(uint8_t *cb,uint8_t siz) {
   headSerialReply(siz);
-  while(siz--) serialize8(*cb++);
+  s_struct_partial(cb,siz);
   tailSerialReply();
 }
 
 static void mspAck() {
   headSerialReply(0);tailSerialReply();
-}
-
-static void __attribute__ ((noinline)) s_struct_w(uint8_t *cb,uint8_t siz) {
-  while(siz--) *cb++ = read8();
 }
 
 enum MSP_protocol_bytes {
@@ -472,11 +476,15 @@ void evaluateCommand(uint8_t c) {
       s_struct((uint8_t*)&motor,16);
       break;
     case MSP_ACC_TRIM:
-      s_struct((uint8_t*)&conf.angleTrim[0],4);
+      headSerialReply(4);
+      s_struct_partial((uint8_t*)&conf.angleTrim[PITCH],2);
+      s_struct_partial((uint8_t*)&conf.angleTrim[ROLL],2);
+      tailSerialReply();
       break;
     case MSP_SET_ACC_TRIM:
       mspAck();
-      s_struct_w((uint8_t*)&conf.angleTrim[0],4);
+      s_struct_w((uint8_t*)&conf.angleTrim[PITCH],2);
+      s_struct_w((uint8_t*)&conf.angleTrim[ROLL],2);
       break;
     case MSP_RC:
       s_struct((uint8_t*)&rcData,RC_CHANS*2);
@@ -730,10 +738,12 @@ void evaluateCommand(uint8_t c) {
 void evaluateOtherData(uint8_t sr) {
   #ifndef SUPPRESS_OTHER_SERIAL_COMMANDS
     #if GPS
-      // on the GPS port, we must avoid interpreting incoming values for other commands because there is no
-      // protocol protection as is with MSP commands
-      // doing so with single chars would be prone to error.
-      if (CURRENTPORT == GPS_SERIAL) return;
+      #if !defined(I2C_GPS)
+        // on the GPS port, we must avoid interpreting incoming values for other commands because there is no
+        // protocol protection as is with MSP commands
+        // doing so with single chars would be prone to error.
+        if (CURRENTPORT == GPS_SERIAL) return;
+      #endif
     #endif
     switch (sr) {
     // Note: we may receive weird characters here which could trigger unwanted features during flight.
